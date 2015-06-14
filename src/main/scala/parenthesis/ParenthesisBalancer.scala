@@ -1,7 +1,12 @@
-def balance(chars: List[Char])  = {
+package parenthesis
 
+/**
+ * Created by sai on 14/06/2015.
+ */
+object ParenthesisBalancer {
 
-  def check(l: List[Char], balance: Int): Int = {
+  def balance(chars: List[Char])  = {
+    def check(l: List[Char], balance: Int): Int = {
       if(l.isEmpty) balance
       else {
         val curr = l.head
@@ -9,8 +14,7 @@ def balance(chars: List[Char])  = {
         else if(curr.equals(')')) check(l.tail, balance-1)
         else check(l.tail, balance)
       }
+    }
+    check(chars, 0) == 0
   }
-  check(chars, 0) == 0
 }
-
-balance("()(()".toList)
