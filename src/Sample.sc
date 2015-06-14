@@ -1,21 +1,17 @@
-import scala.collection.immutable.ListMap
-import scala.collection.mutable.ListBuffer
+def search(toBeSearched: Int, input: List[Int]) = {
 
-val n = 10
-val literalsMapping = ListMap(1000 -> "M", 900 -> "CM", 500 -> "D", 400 -> "CD",  100 -> "C", 90 -> "XC", 50 -> "L", 40 -> "XL", 10 -> "X", 9 -> "IX", 5 -> "V", 4 -> "IV", 1 -> "I"  )
 
-def foo(n: Int) = {
-  def compute(residue: Int, denominators: List[Int]): String = {
-    if(denominators.isEmpty) ""
-    else {
-      literalsMapping.get(denominators.head).get * (residue / denominators.head) + compute(residue % denominators.head, denominators.tail)
-    }
+  def binarySearch(searchSpace: List[Int], startIndex: Int, endIndex: Int): Option[Int] = {
+    val mid = (startIndex + endIndex) / 2
+    if(startIndex > endIndex) None
+    else if (toBeSearched == searchSpace(mid)) Some(searchSpace(mid))
+    else if (toBeSearched > searchSpace(mid)) binarySearch(searchSpace, mid + 1, endIndex)
+    else  binarySearch(searchSpace, startIndex, mid - 1)
   }
-  compute(n, literalsMapping.keys.toList)
+  binarySearch(input.sorted, 0, input.size - 1)
 }
 
-foo(109)
+// 1,2,4,6,8,88,90
+// 6,8,88,90
 
-
-
-
+search(112, List(6, 88, 8, 4, 2, 90, 1))
