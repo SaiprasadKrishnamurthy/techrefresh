@@ -1,16 +1,10 @@
-def balance(chars: List[Char])  = {
-
-
-  def check(l: List[Char], balance: Int): Int = {
-      if(l.isEmpty) balance
-      else {
-        val curr = l.head
-        if(curr.equals('(')) check(l.tail, balance+1)
-        else if(curr.equals(')')) check(l.tail, balance-1)
-        else check(l.tail, balance)
-      }
+def map(list: List[Int], function: Int => Int) = {
+  def _map(input: List[Int], running: List[Int]): List[Int] = {
+    println(input)
+    if (input isEmpty) running
+    else _map(input.tail, running :+ function(list.head))
   }
-  check(chars, 0) == 0
+  _map(list, List())
 }
 
-balance("()(()".toList)
+map(List(1,2,3), x => x * 3)
