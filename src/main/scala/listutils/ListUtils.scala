@@ -6,6 +6,39 @@ import scala.annotation.tailrec
  * Created by sai on 16/06/2015.
  */
 object ListUtils {
+  def flatten(input: List[List[Int]]) = {
+    def flt(l: List[List[Int]], running: List[Int]): List[Int] = {
+      if (l.isEmpty || l.head.isEmpty) running
+      else flt(l.tail, running ++ l.head)
+    }
+
+    if (input isEmpty) List() else flt(input, List())
+
+  }
+
+  def reverse(input: List[Int]) = {
+
+    @tailrec
+    def rev(ll: List[Int], acc: List[Int]): List[Int] = {
+      if (ll.isEmpty) acc
+      else rev(ll.tail, ll.head :: acc)
+    }
+
+    rev(input, List())
+
+  }
+
+  def penultimate(input: List[Int]) = {
+    // It's okay to use it.
+    val size = input.size
+    if (input.isEmpty) throw new IndexOutOfBoundsException
+    def compute(list: List[Int], running: Int): Int = {
+      if (running >= size - 2) list.head
+      else compute(list.tail, running + 1)
+    }
+    compute(input, 0)
+  }
+
 
   def nthElement(input: List[Int], n: Int): Int = {
 
