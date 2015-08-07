@@ -1,4 +1,4 @@
-package equalindex
+package balancedindex
 
 import scala.annotation.tailrec
 
