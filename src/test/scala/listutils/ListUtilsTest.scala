@@ -55,5 +55,11 @@ class ListUtilsTest extends FlatSpec with ShouldMatchers {
   it should ("return a flattened list") in {
     ListUtils.flatten(List(List(1, 2), List(3, 4), List(5, 6))) should be(List(1, 2, 3, 4, 5, 6))
   }
+  "A pack function " should ("return an empty List when an empty List is passed in") in {
+    ListUtils.pack(List()) should be(List(List()))
+  }
+  "A pack function " should ("return single list for non-repetitive consecutive elements") in {
+    ListUtils.pack(List(1, 2, 3, 4)) should be(List(List(1, 2, 3, 4)))
+  }
 
 }

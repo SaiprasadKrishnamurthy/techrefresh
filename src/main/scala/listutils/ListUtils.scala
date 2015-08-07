@@ -6,14 +6,23 @@ import scala.annotation.tailrec
  * Created by sai on 16/06/2015.
  */
 object ListUtils {
+
+  def pack(input: List[Int]) = {
+    def pck(l: List[Int], prev: Int, running: List[List[Int]], prevList: List[Int]): List[List[Int]] = {
+      if (l.isEmpty) running
+      else if (l.head == prev) pck(l.tail, l.head, running, prevList :+ l.head)
+      else pck(l.tail, l.head, running :+prevList, prevList :+ l.head)
+    }
+
+    if (input.isEmpty) List(List()) else pck(input.tail, input.head, List(List()), List())
+  }
+
   def flatten(input: List[List[Int]]) = {
     def flt(l: List[List[Int]], running: List[Int]): List[Int] = {
       if (l.isEmpty || l.head.isEmpty) running
       else flt(l.tail, running ++ l.head)
     }
-
     if (input isEmpty) List() else flt(input, List())
-
   }
 
   def reverse(input: List[Int]) = {
