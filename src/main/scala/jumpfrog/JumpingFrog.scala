@@ -11,7 +11,7 @@ object JumpingFrog {
 
     @tailrec
     def walk(currIndex: Int, collected: Set[Int]): Int = {
-      if(currIndex == arr.length) -1
+      if(currIndex == arrLength) -1
       else if(collected.size == target) currIndex - 1
       else walk(currIndex + 1, if(arr(currIndex) <= target) collected + arr(currIndex) else collected)
     }
