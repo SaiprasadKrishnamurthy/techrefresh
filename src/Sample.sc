@@ -1,4 +1,3 @@
-
 def foo(target: Int, arr: Array[Int], arrLength: Int): Int = {
 
   def walk(currIndex: Int, collected: Set[Int]): Int = {
@@ -8,5 +7,4 @@ def foo(target: Int, arr: Array[Int], arrLength: Int): Int = {
   }
   walk(0, Set())
 }
-
 foo(5, Array(3,1,4,2,3,5,4), 7)
