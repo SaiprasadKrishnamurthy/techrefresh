@@ -1,12 +1,20 @@
 import scala.annotation.tailrec
+val arr = Array(3, 1, 2, 4, 3)
 
 @tailrec
-def peak(elements: Array[Int], start: Int, end: Int): Int = {
-  val mid = (start + end) / 2
-  if(start >= end) -1
-  else if(elements(mid) >= elements(mid - 1) && elements(mid) >= elements(mid + 1)) elements(mid)
-  else if (elements(mid) < elements(mid - 1)) peak(elements, start, mid)
-  else peak(elements, mid, end)
+def foo(left: Array[Int], right: Array[Int], index: Int, res: Int): Int = {
+  val leftSum = left.sum
+  val rightSum = right.sum
+  val diff = Math.abs(leftSum - rightSum)
+  if(index == arr.length - 1) res
+  else  foo(arr.splitAt(index + 1)._1, arr.splitAt(index + 1)._2, index +1, if(diff <= res) diff else res)
 }
-println(peak(Array(1, 3, 4, 3, 5, 6, 7), 0, 7))
+
+foo(arr.splitAt(1)._1, arr.splitAt(1)._2, 1, 1)
+
+
+(1 to arr.length - 1)
+  .map(arr.splitAt _)
+  .map(split => Math.abs(split._1.sum - split._2.sum))
+  .min
 
