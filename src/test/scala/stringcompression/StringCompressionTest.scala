@@ -25,5 +25,4 @@ class StringCompressionTest extends FlatSpec with ShouldMatchers {
     val compressed = "A"
     StringCompression.compress(compressed) should be (compressed)
   }
-
 }
